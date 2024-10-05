@@ -136,6 +136,7 @@ resource "aws_instance" "ec2_public_1" {
   subnet_id               = aws_subnet.publica-1.id
   key_name                = "cloud2"
   vpc_security_group_ids  = [aws_security_group.instance_sg.id]
+  user_data = var.ec2_command
   associate_public_ip_address = true
     tags = {
       Name = "EC2_Public_1"
@@ -147,6 +148,7 @@ resource "aws_instance" "ec2_public_2" {
   instance_type           = "t2.micro"
   subnet_id               = aws_subnet.publica-2.id
   key_name                = "cloud2"
+  user_data = var.ec2_command
   associate_public_ip_address = true
   
   vpc_security_group_ids  = [aws_security_group.instance_sg.id]
