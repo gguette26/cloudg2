@@ -1,8 +1,7 @@
 resource "aws_security_group" "alb_sg" {
   name        = "allow_http_alb"
   description = "Allow HTTP inbound traffic for ALB"
-  vpc_id      = cloud_vpc
-
+  vpc_id      = aws_vpc.cloud_vpc.id 
   ingress {
     description = "HTTP from anywhere"
     from_port   = 80
@@ -36,7 +35,7 @@ resource "aws_lb" "web_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [publica-1, publica-2]
+  subnets            = [aws_subnet.publica-1, aws_subnet.publica-2]
 
   tags = {
     Name = "Web ALB"
@@ -47,7 +46,7 @@ resource "aws_lb_target_group" "web_tg" {
   name     = "web-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = cloud_vpc
+  vpc_id   = aws_vpc.cloud_vpc.id 
 
   health_check {
     path                = "/"

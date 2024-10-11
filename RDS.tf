@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_ids = [private-1_id, private-2_id]
+  subnet_ids = [aws_subnet.private-1, aws_subnet.private-2]
 
   tags = {
     Name = "My DB subnet group"
