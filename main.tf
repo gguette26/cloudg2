@@ -157,3 +157,4 @@ resource "aws_instance" "ec2_public_2" {
       Name = "EC2_Public_2"
     }
 }
+
